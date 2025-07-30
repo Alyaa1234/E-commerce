@@ -1,0 +1,45 @@
+@if(productDetails)
+{
+  <div class="row">
+    <div class="col-md-4">
+      <div class="p-5 border">
+        <owl-carousel-o [options]="customOptions">
+          @for (image of productDetails.images; track $index)
+          {
+            <ng-template carouselSlide>
+              <img [src]="image" >
+            </ng-template>
+          }
+       </owl-carousel-o>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="p-5">
+        <h3>{{productDetails.title}}</h3>
+        <p class="my-2 text-secondary fw-light">{{productDetails.description}}</p>
+        <span class="fw-medium font-sm text-main">{{productDetails.category.name}}</span>
+
+        <div class="my-4">
+          <p class="text-secondary fw-medium my-0">available Quantity: {{productDetails.quantity}}</p>
+          <p class="text-secondary fw-medium my-0">Brand: {{productDetails.brand.name}}</p>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+          <span>Price:{{ productDetails.price}} EGP</span>
+          <div>
+           <i class="fa-solid fa-star rating-color"></i>
+           <span class="ms-2">{{ productDetails.ratingsAverage}}</span>
+          </div>
+        </div>
+
+        <button (click)="addToCart(productDetails._id)" class="btn bg-main text-white w-100 mt-5">
+          Add to Cart
+          <i class="fas fa-cart-plus fs-4"></i>
+        </button>
+        <button (click)="addToWishlist(productDetails._id)" class="btn bg-danger text-white w-100 mt-3">
+          Add to Wishlist <i class="fas fa-heart fs-4"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+}

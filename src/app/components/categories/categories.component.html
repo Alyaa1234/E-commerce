@@ -1,0 +1,32 @@
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 ">
+  @for(category of categoriesList ; track category._id)
+  {
+    <div class="col cursor-pointer" (click)="getCategorySubCategories(category._id , category.name)">
+      <div class="card">
+        <img [src]="category.image" class="card-img-top w-100 object-fit-cover" style="height:300px" [alt]="category.name">
+        <div class="card-body">
+          <h5 class="card-title text-center fw-medium text-main fs-3">{{category.name}}</h5>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+<div class="row">
+  @if(categorySubCategories)
+  {
+    <h4 *ngIf="categorySubCategories" class="col-12 border-bottom my-5 pb-5 text-center">
+     <span class="text-main fw-bold">{{categoryName}}</span>
+      Subcategories:
+    </h4>
+    @for(subCategory of categorySubCategories ; track subCategory._id)
+    {
+      <div class="col-lg-4 col-md-6 col-sm-12 mb-4 ">
+        <div class="card bg-main-light">
+          <div class="card-body">
+            <h5 class="card-title text-center fw-medium text-main fs-4">{{subCategory.name}}</h5>
+          </div>
+        </div>
+      </div>
+    }
+  }
+</div>

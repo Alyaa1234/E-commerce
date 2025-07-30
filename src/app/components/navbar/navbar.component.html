@@ -1,0 +1,103 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary ">
+  <div class="container">
+    <a class="navbar-brand">
+      <img src="images/freshcart-logo.svg" alt="logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      @if(isLoggedInUser)
+      {
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" routerLinkActive="text-main" routerLink="home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="text-main" routerLink="products">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="text-main" routerLink="categories">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="text-main" routerLink="brands">Brands</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="text-main" routerLink='/wishlist'>
+              wishlist
+              <i routerLinkActive='text-danger' class="fas fa-heart fs-5 text-danger"></i>
+            </a>
+          </li>
+        </ul>
+      }
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+        @if(currentUserName)
+        {
+          <a routerLink="/profile" routerLinkActive="border-2 border-success" class=" d-flex align-items-center border px-2 rounded shadow-sm me-3">
+            <!-- <i class="mx-2 fas fa-user-circle fs-4"></i> -->
+            <p class="my-3 mx-1 text-capitalize text-secondary">
+             Welcome <span class="text-main fw-medium">{{currentUserName}} 👋</span>
+            </p>
+          </a>
+        }
+        @if(!isLoggedInUser)
+        {
+          <li class="nav-item me-3 d-flex align-items-center">
+          <div>
+            <i class="mx-2 fab fa-instagram"></i>
+            <i class="mx-2 fab fa-facebook"></i>
+            <i class="mx-2 fab fa-tiktok"></i>
+            <i class="mx-2 fab fa-twitter"></i>
+            <i class="mx-2 fab fa-linkedin"></i>
+            <i class="mx-2 fab fa-youtube"></i>
+          </div>
+        </li>
+        }
+        @if(isLoggedInUser == false)
+        {
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="text-main" routerLink="register">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="text-main" routerLink="login">Login</a>
+          </li>
+        }
+        @else
+        {
+          <li class="nav-item">
+            <a class="nav-link cursor-pointer" (click)="logOut()">SignOut</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link cursor-pointer position-relative" >
+              <i
+              routerLinkActive='text-main'
+              routerLink='/cart'
+               class="fas fa-cart-shopping fs-3"
+              >
+                <span class="position-absolute top-0 start-100  translate-middle badge rounded-pill bg-main fs-small"
+                >
+                  {{numOfLoggedUserCartItems}}
+                </span>
+              </i>
+            </a>
+          </li>
+
+          <!-- <li class="nav-item">
+            <a class="nav-link cursor-pointer position-relative" >
+              <i
+              routerLinkActive='text-danger'
+              routerLink='/wishlist'
+               class="fas fa-heart fs-3 text-danger ms-2"
+              >
+              </i>
+            </a>
+          </li> -->
+
+        }
+
+      </ul>
+    </div>
+  </div>
+</nav>

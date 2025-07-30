@@ -1,0 +1,19 @@
+<div class="w-75 mx-auto">
+  <h3 class="mb-3 pb-3 border-bottom">Enter your shipping address</h3>
+
+  <form [formGroup]="shippingAddressForm" (ngSubmit)="onlinePayment()">
+    <div>
+      <label class="mt-4 mb-2" for="details">Address Details</label>
+      <input type="text" id="details" class="form-control" formControlName="details">
+    </div>
+    <div>
+      <label class="mt-4 mb-2" for="city">City</label>
+      <input type="text" id="city" class="form-control" formControlName="city">
+    </div>
+    <div>
+      <label class="mt-4 mb-2" for="phone">Phone</label>
+      <input type="tel" id="phone" class="form-control" formControlName="phone">
+    </div>
+    <button class="mt-4 btn bg-main text-white">Send</button>
+  </form>
+</div>

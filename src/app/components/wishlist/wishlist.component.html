@@ -1,0 +1,46 @@
+@if(allWishlistProducts != null)
+{
+  @if(allWishlistProducts.length > 0){
+  <div class="container bg-main-light p-5 rounded shadow">
+    <h4 class="my-3 fw-medium">Wishlist</h4>
+    <p class="text-main fw-medium font-sm border-bottom py-4">Total Wishlist Items: {{allWishlistProducts.length}}
+    </p>
+
+    @for(wishlistProduct of allWishlistProducts; track wishlistProduct._id)
+    {
+    <div class="row border-bottom py-3 align-items-center">
+      <div class="col-md-2">
+        <div>
+          <img [src]="wishlistProduct.imageCover" [alt]="wishlistProduct.title"
+            class="w-100 img-thumbnail border rounded">
+        </div>
+      </div>
+      <div class="col-md-10 d-flex justify-content-between">
+        <div>
+          <p class="my-2 fw-bold">{{wishlistProduct.title}}</p>
+          <p class="my-2 fw-medium font-sm  text-secondary">{{wishlistProduct.description}}</p>
+          <p class="text-main fw-medium">Price: {{wishlistProduct.price}} EGP</p>
+        </div>
+        <div class="d-flex flex-column ">
+          <button (click)="addToCart(wishlistProduct._id)" class=" text-main btn border rouded border-success mb-3">
+            <i class="fa-solid fa-cart-plus me-2"></i>
+            <span class="fw-bold">Add To Cart</span>
+          </button>
+          <button (click)="deleteWishlistItem(wishlistProduct._id)" class="delete btn border rouded border-danger">
+            <i class="fa-solid fa-trash-can text-danger me-2"></i>
+            <span class="text-danger fw-bold">Remove</span>
+          </button>
+      </div>
+      </div>
+
+    </div>
+    }
+
+  </div>
+  }
+  @else {
+  <div class="container bg-main-light p-5 rounded shadow">
+    <h2 class="text-center" >No Data Found </h2>
+  </div>
+  }
+}

@@ -1,0 +1,32 @@
+<h3 class="mb-5 text-center fs-2 fw-bold text-main">All Brands:</h3>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 " >
+  @for(brand of brandsList ; track brand._id)
+  {
+    <div class="col cursor-pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getBrandProducts( brand.name , brand.image)">
+      <div class="card">
+        <img [src]="brand.image" class="card-img-top w-100 object-fit-cover" style="height:200px" [alt]="brand.name">
+        <div class="card-body">
+          <h5 class="card-title text-center fw-medium text-main fs-3">{{brand.name}}</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">{{brandName}}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <img [src]="brandImage" alt="img" class="w-100 object-fit-cover" >
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+

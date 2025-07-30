@@ -1,0 +1,79 @@
+<div>
+  <form (ngSubmit)="handleEditUserInfo()" [formGroup]="editUserInfoForm">
+
+    <h2>Edit User Information</h2>
+    <hr>
+
+    @if(responseErrorMessage != "")
+    {
+      <div class="alert alert-danger text-center">{{responseErrorMessage }}</div>
+    }
+
+    <label class="mt-3" for="name">Name <span class="text-danger">*</span></label>
+    <input formControlName="name" class="form-control" type="text" id="name" >
+    @let nameControl = editUserInfoForm.get('name');
+    @if(nameControl?.touched)
+    {
+      <div>
+        @if(nameControl?.getError('required'))
+        {
+          <p class="text-small mt-0 text-danger">User name is Required</p>
+        }
+        @else if(nameControl?.getError('minlength'))
+        {
+          <p class="text-small mt-0 text-danger">User name min length is 3 chars</p>
+        }
+        @else if(nameControl?.getError('maxlength'))
+        {
+          <p class="text-small mt-0 text-danger">User name max length is 20 chars</p>
+        }
+      </div>
+    }
+
+    <label class="mt-3" for="email">Email <span class="text-danger">*</span></label>
+    <input formControlName="email" class="form-control" type="email" id="email" >
+    @let emailControl = editUserInfoForm.get('email');
+    @if(emailControl?.touched)
+    {
+      <div>
+        @if(emailControl?.getError('required'))
+        {
+          <p class="text-small mt-0 text-danger">Email is Required</p>
+        }
+        @else if(emailControl?.getError('email'))
+        {
+          <p class="text-small mt-0 text-danger">Please Enter a vaild Email</p>
+        }
+      </div>
+    }
+
+
+    <label class="mt-3" for="phone">Phone <span class="text-danger">*</span></label>
+    <input formControlName="phone" class="form-control" type="tel" id="phone" >
+    @let phoneControl = editUserInfoForm.get('phone');
+    @if(phoneControl?.touched)
+    {
+      <div>
+        @if(phoneControl?.getError('required'))
+        {
+          <p class="text-small mt-0 text-danger">Phone number is Required</p>
+        }
+        @else if(phoneControl?.getError('pattern'))
+        {
+          <p class="text-small mt-0 text-danger">Please Enter a vaild Phone number </p>
+        }
+      </div>
+    }
+
+    <button [disabled]="editUserInfoForm.invalid || isLoading" class="btn bg-main text-light mt-4 w-100 rounded-pill">
+      @if(!isLoading)
+      {
+        <span>Update Info</span>
+      }
+      @if(isLoading)
+      {
+        <span class="fa-solid fa-spinner fa-spin"></span>
+      }
+    </button>
+  </form>
+</div>
