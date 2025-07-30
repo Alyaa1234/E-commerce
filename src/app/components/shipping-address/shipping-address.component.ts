@@ -38,7 +38,7 @@ export class ShippingAddressComponent {
         next: (response) => {
           // console.log('Cash order created:', response);
           this.cartService.numOfCartItemsSubject.next(0);
-          this.routerService.navigate(['/allorders']);
+          this.routerService.navigate(['allorders']);
           alert('Order placed successfully! You can view your orders in the Orders section.');
         },
         error: (error) => {
